@@ -1,3 +1,8 @@
+package templates;
+
+import templates.Menu;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -6,11 +11,13 @@ import javax.swing.JTable;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Viewer extends JFrame {
     public Viewer() {
         // Set the title of the window
-        setTitle("Table Example");
+        setTitle("Students.info Viewer");
 
         JLabel titleLabel = new JLabel("Welcome to Students.info Viewer !");
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -19,13 +26,12 @@ public class Viewer extends JFrame {
 
         // Create sample data for the table
         Object[][] data = {
-                {"John", "Doe", 25},
-                {"Jane", "Smith", 30},
-                {"Bob", "Johnson", 22}
+                {1, "Haroun", 20, "BD", null},
+                {2, "wehd", 19, "IM", "IMC"}
         };
 
         // Create column names
-        String[] columnNames = {"First Name", "Last Name", "Age"};
+        String[] columnNames = {"ID", "Name", "Age", "Degree", "Club"};
 
         // Create a table with the data and column names
         JTable table = new JTable(data, columnNames);
@@ -36,9 +42,14 @@ public class Viewer extends JFrame {
         // Set the preferred size of the scroll pane
         scrollPane.setPreferredSize(new Dimension(300, 600));
 
+        JButton returnButton = new JButton("Return to Main Menu");
+        Dimension buttonSize = new Dimension(60, 60);
+        returnButton.setPreferredSize(buttonSize);
+
         JPanel mainPanel = new JPanel(new BorderLayout());
         mainPanel.add(titleLabel, BorderLayout.NORTH);
         mainPanel.add(scrollPane, BorderLayout.CENTER);
+        mainPanel.add(returnButton, BorderLayout.SOUTH);
 
         // Add the scroll pane to the content pane of the window
         getContentPane().add(mainPanel);
@@ -57,6 +68,18 @@ public class Viewer extends JFrame {
 
         // Set the window to be visible
         setVisible(true);
+
+        returnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Action to perform when Button 1 is clicked
+                if(e.getSource() == returnButton){
+                    dispose();
+                    Menu mainMenu = new Menu();
+                }
+                System.out.println("Returned to main menu !");
+            }
+        });
     }
 
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-
+package templates;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -70,11 +70,6 @@ public class Menu extends JFrame {
                 System.out.println("Entered as a viewer !");
             }
         });
-    }
-
-    public static void main(String[] args) {
-        // Create an instance of the MyWindow class
-        Menu mainMenu = new Menu();
     }
 }
 

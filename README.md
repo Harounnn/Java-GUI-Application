@@ -1,1 +1,1 @@
-# Java GUI Application using Swing and MySQL
+# Java GUI Application using Swing and SQLite
