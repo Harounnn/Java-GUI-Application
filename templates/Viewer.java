@@ -1,6 +1,7 @@
 package templates;
 
 import templates.Menu;
+import db.DatabaseConnector;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -85,6 +86,7 @@ public class Viewer extends JFrame {
     public static void main(String[] args) {
         // Create an instance of the TableExample class
         Viewer viewerwindow = new Viewer();
+        DatabaseConnector.connect();
     }
 }
 
