@@ -4,6 +4,8 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.Font;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,6 +17,8 @@ public class Menu extends JFrame {
         // Create a label for the title
         JLabel titleLabel = new JLabel("Welcome to Students.info !");
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
+        titleLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+        titleLabel.setPreferredSize(new Dimension(300, 80));
 
         // Create buttons
         JButton button1 = new JButton("As an Admin");
@@ -24,6 +28,10 @@ public class Menu extends JFrame {
         JPanel buttonPanel = new JPanel(new GridLayout(1, 2, 10, 0));
         buttonPanel.add(button1);
         buttonPanel.add(button2);
+
+        Dimension buttonSize = new Dimension(60, 15);
+        button1.setPreferredSize(buttonSize);
+        button2.setPreferredSize(buttonSize);
 
         // Create a panel to hold the title label and button panel
         JPanel mainPanel = new JPanel(new BorderLayout());
@@ -38,6 +46,8 @@ public class Menu extends JFrame {
 
         // Set the size of the window
         setSize(800, 400);
+
+        setResizable(false);
 
         // Set the window to be visible
         setVisible(true);
