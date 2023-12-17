@@ -1,6 +1,5 @@
 package templates;
 
-import templates.Menu;
 import db.DataIngestor;
 
 import javax.swing.JButton;
@@ -79,11 +78,6 @@ public class Viewer extends JFrame {
                 System.out.println("Returned to main menu !");
             }
         });
-    }
-
-    public static void main(String[] args) {
-        // Create an instance of the TableExample class
-        Viewer viewerwindow = new Viewer();
     }
 }
 

@@ -59,6 +59,8 @@ public class Menu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Action to perform when Button 1 is clicked
+                dispose();
+                Admin admin = new Admin();
                 System.out.println("Entered as an Admin !");
             }
         });
