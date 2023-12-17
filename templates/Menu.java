@@ -67,9 +67,10 @@ public class Menu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Action to perform when Button 2 is clicked
+                dispose();
+                Viewer viewer = new Viewer();
                 System.out.println("Entered as a viewer !");
             }
         });
     }
 }
-
