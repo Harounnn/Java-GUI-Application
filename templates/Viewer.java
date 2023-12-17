@@ -1,7 +1,7 @@
 package templates;
 
 import templates.Menu;
-import db.DatabaseConnector;
+import db.DataIngestor;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.BorderLayout;
@@ -25,20 +26,17 @@ public class Viewer extends JFrame {
         titleLabel.setFont(new Font("Arial", Font.PLAIN, 20));
         titleLabel.setPreferredSize(new Dimension(300, 80));
 
-        // Create sample data for the table
-        Object[][] data = {
-                {1, "Haroun", 20, "BD", null},
-                {2, "wehd", 19, "IM", "IMC"}
-        };
-
         // Create column names
         String[] columnNames = {"ID", "Name", "Age", "Degree", "Club"};
+        DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
+
+        JTable dataTable = new JTable(tableModel);
 
         // Create a table with the data and column names
-        JTable table = new JTable(data, columnNames);
+        dataTable = DataIngestor.fetchDataFromDatabase(tableModel, dataTable);
 
         // Create a scroll pane to display the table
-        JScrollPane scrollPane = new JScrollPane(table);
+        JScrollPane scrollPane = new JScrollPane(dataTable);
 
         // Set the preferred size of the scroll pane
         scrollPane.setPreferredSize(new Dimension(300, 600));
@@ -86,7 +84,6 @@ public class Viewer extends JFrame {
     public static void main(String[] args) {
         // Create an instance of the TableExample class
         Viewer viewerwindow = new Viewer();
-        DatabaseConnector.connect();
     }
 }
 
