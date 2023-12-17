@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+import db.DataUpdater;
+
 public class Admin extends JFrame {
 
     private JTextField idField, column1Field, column2Field, column3Field, column4Field;
@@ -43,8 +45,10 @@ public class Admin extends JFrame {
         idField = new JTextField(10);
         column1Field = new JTextField(10);
         column2Field = new JTextField(10);
-        column3Field = new JTextField(10);
-        column4Field = new JTextField(10);
+
+        // ComboBox
+        JComboBox column3Field;
+        JComboBox column4Field;
 
         // Buttons
         JButton insertButton = new JButton("Insert");
@@ -60,10 +64,12 @@ public class Admin extends JFrame {
         addFieldWithLabel(inputPanel, gbc, "ID:", idField, 0, 0);
         addFieldWithLabel(inputPanel, gbc, "Name:", column1Field, 1, 0);
         addFieldWithLabel(inputPanel, gbc, "Age:", column2Field, 2, 0);
-        String[] degrees = {"BD","IM","CM","AV","JV","Engineering","Masters"}; 
-        addDropBoxWithLabel(inputPanel, gbc, "Degree:", new JComboBox<>(degrees), 3, 0);
+        String[] degrees = {"BD","IM","CM","AV","JV","Engineering","Masters"};
+        column3Field =  new JComboBox<>(degrees);
+        addDropBoxWithLabel(inputPanel, gbc, "Degree:", column3Field, 3, 0);
         String[] clubs = {"IMC","J2i","Spark","Orenda JE","LOG",null}; 
-        addDropBoxWithLabel(inputPanel, gbc, "Club:", new JComboBox<>(clubs), 4, 0);
+        column4Field =  new JComboBox<>(clubs);
+        addDropBoxWithLabel(inputPanel, gbc, "Club:", column4Field, 4, 0);
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         buttonPanel.add(insertButton);
@@ -84,6 +90,19 @@ public class Admin extends JFrame {
                     Menu mainMenu = new Menu();
                 }
                 System.out.println("Returned to main menu !");
+            }
+        });
+
+        insertButton.addActionListener(new ActionListener () {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DataUpdater.insertData(Integer.parseInt(idField.getText()), column1Field.getText(), Integer.parseInt(column2Field.getText()),column3Field.getSelectedItem().toString() , column4Field.getSelectedItem().toString());
+            }}); 
+
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                DataUpdater.deleteData(Integer.parseInt(idField.getText()));
             }
         });
     }
